@@ -6,4 +6,9 @@
     <string name="nav_header_subtitle">android.studio@android.com</string>
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
+    <string name="recipes">RECIPES</string>
+    <string name="timer">TIMER</string>
+    <string name="cookr_logo">cookr-logo</string>
+    <color name="white">#FFFFFF</color>
+    <color name="khaki">#FF9A8977</color>
 </resources>
