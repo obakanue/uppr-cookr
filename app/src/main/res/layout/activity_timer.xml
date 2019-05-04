@@ -5,8 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
-    app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context=".MainActivity">
+    tools:context=".TimerActivity">
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView2"
@@ -27,14 +26,14 @@
             android:layout_height="match_parent">
 
             <TextView
-                android:id="@+id/timer"
+                android:id="@+id/startTimerOnClick"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:paddingVertical="20dp"
-                android:text="@string/timer"
+                android:text="@string/start_timer"
                 android:textColor="@color/white"
                 android:textSize="30sp"
-                android:onClick="startTimerActivity"
+                android:onClick="startTimer"
                 android:clickable="true"
 
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -62,10 +61,10 @@
         android:id="@+id/cardView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="473dp"
+        android:layout_marginTop="430dp"
         android:clickable="true"
-        app:cardBackgroundColor="@color/khaki"
-        app:cardElevation="10dp"
+        app:cardBackgroundColor="@color/white"
+        app:cardElevation="0dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/cardView2"
@@ -73,23 +72,56 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
+
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
             <TextView
-                android:id="@+id/recipes"
+                android:id="@+id/down"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:paddingVertical="20dp"
-                android:text="@string/recipes"
-                android:textColor="@color/white"
+                android:textColor="@color/darkbrown"
                 android:textSize="30sp"
+                android:text="Down"
+                android:onClick="down"
+                android:clickable="true"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/tickingTimer"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingVertical="20dp"
+                android:textColor="@color/darkbrown"
+                android:textSize="50sp"
+                android:text="@string/timerNumber"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/up"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingVertical="20dp"
+                android:textColor="@color/darkbrown"
+                android:textSize="30sp"
+                android:text="Up"
+                android:onClick="up"
+                android:clickable="true"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
-
 </androidx.constraintlayout.widget.ConstraintLayout>
