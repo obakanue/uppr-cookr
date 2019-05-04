@@ -1,5 +1,6 @@
 package com.example.cookr;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -67,7 +68,12 @@ public class MainActivity extends AppCompatActivity
 
         return super.onOptionsItemSelected(item);
     }
+    public void startTimerActivity(View v) {
 
+        Intent intent = new Intent(this, TimerActivity.class);
+        startActivity(intent);
+
+    }
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
