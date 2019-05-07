@@ -68,6 +68,11 @@ public class MainActivity extends AppCompatActivity
 
         return super.onOptionsItemSelected(item);
     }
+    public void startRecipeActicity(View v){
+        Intent intent = new Intent(this, RecipeActivity.class);
+        startActivity(intent);
+
+    }
     public void startTimerActivity(View v) {
 
         Intent intent = new Intent(this, TimerActivity.class);
