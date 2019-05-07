@@ -9,7 +9,7 @@ This is some of the sources that we will be taking into account while designing 
 * [HaptiMap](https://moodle.lth.se/pluginfile.php/38920/mod_resource/content/1/HaptiMap%20example%20apps.pdf) on page 31,
 how to make including button design for everyone. Possible to let blind people make us of the app (probably mostly the timer).   
    <p align="center"> 
-     <img src="https://github.com/Jesper-Berg/AIDGrupp7/blob/master/Pictures/blind-design.png?raw=true" class="center" width="30%">
+     <img src="https://github.com/obakanue/uppr-cookr/blob/master/Pictures/blind-design.png?raw=true" class="center" width="30%">
    </p>     
 * [Ljud och Metod](https://moodle.lth.se/pluginfile.php/43550/mod_resource/content/1/Ljud%20o%20metod.pdf) Lecture notes on
 using sounds as a way of informing the user of different actions and processes in a product. No conclusions yet, also touches on the subject above if we want to convert words to sounds.
@@ -36,7 +36,7 @@ This section will contain some data on why we have picked different visual desig
 Colorblindness is another important factor when deciding the right color for the app. Our decission is that all humans can see the color brown (if they are not blind), a color scheme with brown might be a good choice.
 Brown is also a very [neutral color](https://www-emeraldinsight-com.ludwig.lub.lu.se/doi/pdfplus/10.1108/00251740610673332) (page 787), which means it won't affect the user in an unexpected way for the user experience. At the same time, hues of brown makes a product be precieved as competent in this [article](http://content.ebscohost.com/ContentServer.asp?T=P&P=AN&K=78065194&S=R&D=bth&EbscoContent=dGJyMMTo50Sep7A4v%2BbwOLCmr1Gep7FSs6e4SLaWxWXS&ContentCustomer=dGJyMPGpt0mwqrBRuePfgeyx43zx) (page 714). See below picture from same page from the same article:
 <p align="center"> 
-<img src="https://github.com/Jesper-Berg/AIDGrupp7/blob/master/Pictures/brown-color.png?raw=true" class="center" width="60%">
+<img src="https://github.com/obakanue/uppr-cookr/blob/master/Pictures/brown-color.png?raw=true" class="center" width="60%">
 </p>
 Also according to our sources brown does seem to be culturally invariant.
 
@@ -61,7 +61,7 @@ For this reason our Brand Name Font have own some of this charecteristicts. We w
    The take away is that we need a balance between Fitt's Law and white space. Also that the micro white space is important for the user to easily read the content.
 * [F-Shaped Pattern](https://www.nngroup.com/articles/f-shaped-pattern-reading-web-content/) Our design can affect the pattern scanning. Data suggests that it doesn't have to be F-shaped, it can be avoided through good implementation of design. The F-Shape pattern is a bad way for users to interact and read information in our app, we need to think about good design to avoid this.   
 <p align="center"> 
-<img src="https://github.com/Jesper-Berg/AIDGrupp7/blob/master/Pictures/f-shaped-pattern-antidote.png?raw=true" class="center" width="60%">
+<img src="https://github.com/obakanue/uppr-cookr/blob/master/Pictures/f-shaped-pattern-antidote.png?raw=true" class="center" width="60%">
 </p>
 
 ### COOKR App Orientation
