@@ -17,9 +17,9 @@ dropping food or objects on your phone.
 have a general clue of when the food is ready and can't prepare for an easy flow while cooking.
 
 <p align="center"> 
-  <img src="https://github.com/Jesper-Berg/AIDGrupp7/blob/master/Pictures/before.jpg?raw=true" class="center" width="60%">
-  <img src="https://github.com/Jesper-Berg/AIDGrupp7/blob/master/Pictures/rolling.jpg?raw=true" class="center" width="60%">
-  <img src="https://github.com/Jesper-Berg/AIDGrupp7/blob/master/Pictures/cooking.jpg?raw=true" class="center" width="60%">
-  <img src="https://github.com/Jesper-Berg/AIDGrupp7/blob/master/Pictures/after.jpg?raw=true" class="center" width="60%">
+  <img src="https://github.com/obakanue/uppr-cookr/blob/master/Pictures/before.jpg?raw=true" class="center" width="60%">
+  <img src="https://github.com/obakanue/uppr-cookr/blob/master/Pictures/rolling.jpg?raw=true" class="center" width="60%">
+  <img src="https://github.com/obakanue/uppr-cookr/blob/master/Pictures/cooking.jpg?raw=true" class="center" width="60%">
+  <img src="https://github.com/obakanue/uppr-cookr/blob/master/Pictures/after.jpg?raw=true" class="center" width="60%">
 </p>
 
