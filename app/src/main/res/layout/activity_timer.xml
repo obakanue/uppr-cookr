@@ -51,11 +51,12 @@
         android:layout_marginTop="69dp"
         android:contentDescription="@string/cookr_logo"
         android:elevation="10dp"
+        android:onClick="logoClick"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/logo" />
+        app:srcCompat="@drawable/logo_no_text" />
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView"
@@ -81,7 +82,6 @@
                 android:layout_width="80dp"
                 android:layout_height="80dp"
                 android:layout_marginTop="15dp"
-                android:contentDescription="@string/cookr_logo"
                 android:elevation="10dp"
                 android:onClick="down"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -89,7 +89,6 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:srcCompat="@drawable/arrowdown" />
-
 
             <TextView
                 android:id="@+id/tickingTimer"
@@ -100,6 +99,7 @@
                 android:textSize="50sp"
                 android:text="@string/timerNumber"
                 android:background="@color/white"
+                android:onClick="timerClick"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
@@ -111,7 +111,6 @@
                 android:layout_width="80dp"
                 android:layout_height="80dp"
                 android:layout_marginTop="15dp"
-                android:contentDescription="@string/cookr_logo"
                 android:elevation="10dp"
                 android:onClick="up"
                 app:layout_constraintEnd_toEndOf="parent"
