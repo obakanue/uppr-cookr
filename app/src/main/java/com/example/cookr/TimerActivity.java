@@ -12,6 +12,7 @@ import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.view.View;
 import android.widget.TextView;
+import android.os.Vibrator;
 
 
 public class TimerActivity extends AppCompatActivity implements SensorEventListener {
@@ -19,16 +20,22 @@ public class TimerActivity extends AppCompatActivity implements SensorEventListe
     private Sensor mProximity;
     private static final int SENSOR_SENSITIVITY = 4;
     TextView textView;
-    public int counter;
+    public int seconds, minutes, hours;
+    public int totalTime;
+    private boolean timerOn;
+    Vibrator vib;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_timer);
 
         mSensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
+        vib = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
         mProximity = mSensorManager.getDefaultSensor(Sensor.TYPE_PROXIMITY);
         textView = (TextView)findViewById(R.id.tickingTimer);
-        counter = 0;
+
     }
     @Override
     protected void onResume() {
@@ -46,8 +53,7 @@ public class TimerActivity extends AppCompatActivity implements SensorEventListe
     public void onSensorChanged(SensorEvent event) {
         if (event.sensor.getType() == Sensor.TYPE_PROXIMITY) {
             if (event.values[0] >= -SENSOR_SENSITIVITY && event.values[0] <= SENSOR_SENSITIVITY) {
-                counter += 60;
-                textView.setText(String.valueOf(counter));
+                startTimer(null);
             }
         }
     }
@@ -55,32 +61,87 @@ public class TimerActivity extends AppCompatActivity implements SensorEventListe
     public void onAccuracyChanged(Sensor sensor, int accuracy) {
 
     }
+    private void vibrate(int ms){
+        if (vib.hasVibrator()) {
+            vib.vibrate(ms); // for 500 ms
+        }
+    }
+    private void printTime(){
+        String formatedTime = String.format("%02d:%02d:%02d", hours, minutes, seconds);
+        textView.setText(formatedTime);
+    }
 
     public void up(View v) {
-        counter ++;
-        textView.setText(String.valueOf(counter));
-
+        vibrate(100);
+        minutes++;
+        printTime();
     }
 
     public void down(View v) {
-        if (counter > 0) {
-            counter--;
-            textView.setText(String.valueOf(counter));
+        if (minutes > 0) {
+            vibrate(100);
+            minutes--;
+            String formatedTime = String.format("%02d:%02d:%02d", hours, minutes, seconds);
+            printTime();
         }
     }
-    public void startTimer(View v) {
-        textView.setTextColor(Color.parseColor("#725F42"));
-        new CountDownTimer(counter*1000, 1000){
-            public void onTick(long millisUntilFinished){
-                textView.setText(String.valueOf(counter));
-                counter--;
-            }
-            public  void onFinish(){
-                textView.setText("FINISH!!");
-                textView.setTextColor(Color.parseColor("#474338"));
-            }
-        }.start();
 
+    public void timerClick(View v) {
+        if (!timerOn) {
+            vibrate(100);
+            minutes = 0;
+            hours = 0;
+            seconds = 0;
+            printTime();
+        } else {
+            if (hours > 0) {
+                vibrate(100);
+                hours--;
+            }
+        }
+    }
+    public void logoClick(View v) { vibrate(100);
+       if (!timerOn){
+           textView.setText("cookr");
+       } else {
+           hours++;
+
+       }
+    }
+
+    public void startTimer(View v) {
+        if (!timerOn) {
+            vibrate(500);
+            timerOn = true;
+            textView.setTextColor(Color.parseColor("#725F42"));
+            totalTime = seconds + minutes * 60 + hours * 60 * 60;
+            new CountDownTimer(totalTime * 1000, 1000) {
+                public void onTick(long millisUntilFinished) {
+                    printTime();
+                    if (seconds == 0) {
+                        if (minutes > 0) {
+                            seconds = 59;
+                            minutes--;
+                        } else if (hours > 0) {
+                            seconds = 59;
+                            minutes = 59;
+                            hours--;
+                        }
+                    } else {
+                        seconds--;
+                    }
+
+                }
+
+                public void onFinish() {
+                    textView.setText("FINISH!!");
+                    textView.setTextColor(Color.parseColor("#474338"));
+                    vibrate(500);
+                    timerOn = false;
+                }
+            }.start();
+
+        }
     }
 }
 
