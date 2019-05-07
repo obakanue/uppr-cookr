@@ -8,16 +8,46 @@
     tools:context=".TimerActivity">
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/cardView2"
+        android:id="@+id/cardView3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="563dp"
+        app:cardBackgroundColor="@color/khaki"
+        app:cardElevation="0dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/timer"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingVertical="20dp"
+                android:text="@string/timer"
+                android:textColor="@color/white"
+                android:textSize="30sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardView2"
+        android:layout_width="260dp"
+        android:layout_height="73dp"
+        android:layout_marginTop="578dp"
         android:clickable="true"
         app:cardBackgroundColor="@color/khaki"
+        app:cardCornerRadius="25dp"
         app:cardElevation="10dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/cardView"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
@@ -29,12 +59,12 @@
                 android:id="@+id/startTimerOnClick"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:clickable="true"
+                android:onClick="startTimer"
                 android:paddingVertical="20dp"
                 android:text="@string/start_timer"
                 android:textColor="@color/white"
-                android:textSize="30sp"
-                android:onClick="startTimer"
-                android:clickable="true"
+                android:textSize="25sp"
 
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -46,14 +76,14 @@
 
     <ImageView
         android:id="@+id/logo"
-        android:layout_width="302dp"
-        android:layout_height="300dp"
-        android:layout_marginTop="69dp"
+        android:layout_width="266dp"
+        android:layout_height="270dp"
+        android:layout_marginTop="128dp"
         android:contentDescription="@string/cookr_logo"
         android:elevation="10dp"
         android:onClick="logoClick"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/logo_no_text" />
@@ -94,12 +124,12 @@
                 android:id="@+id/tickingTimer"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:paddingVertical="20dp"
-                android:textColor="@color/darkbrown"
-                android:textSize="50sp"
-                android:text="@string/timerNumber"
                 android:background="@color/white"
                 android:onClick="timerClick"
+                android:paddingVertical="20dp"
+                android:text="@string/timerNumber"
+                android:textColor="@color/darkbrown"
+                android:textSize="50sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
