@@ -7,11 +7,12 @@
 <string name="nav_header_desc">Navigation header</string>
 <string name="action_settings">Settings</string>
 <string name="recipes">RECIPES</string>
+    <string name="addRecipe">ADD RECIPE</string>
 <string name="timer">TIMER</string>
 <string name="start_timer">START</string>
 <string name="timerNumber">00:00:00</string>
 <string name="cookr_logo">cookr-logo</string>
 <color name="white">#FFFFFF</color>
-<color name="khaki">#FF9A8977</color>
+<color name="khaki">#9A8977</color>
 <color name="darkbrown">#474338</color>
 </resources>
