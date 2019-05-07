@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="list_items">
+        <item>PANCAKES</item>
+        <item>LASAGNA</item>
+        <item>SWEDISH MEATBALLS</item>
+        <item>HAMBURGERS</item>
+        <item>VEGETABLE SOUP</item>
+    </string-array>
+</resources>
