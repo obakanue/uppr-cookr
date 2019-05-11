@@ -88,6 +88,22 @@
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/logo_no_text" />
 
+    <TextView
+        android:id="@+id/infopanel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:paddingVertical="20dp"
+        android:text="Welcome to cookertimer"
+        android:textColor="@color/darkbrown"
+        android:textSize="15sp"
+        app:layout_constraintBottom_toBottomOf="@id/cardView2"
+        app:layout_constraintEnd_toEndOf="@id/cardView2"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintVertical_bias="0.89"
+
+        app:layout_constraintStart_toStartOf="@id/cardView2"
+        app:layout_constraintTop_toTopOf="parent" />
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView"
         android:layout_width="match_parent"
@@ -105,7 +121,7 @@
         <androidx.constraintlayout.widget.ConstraintLayout
 
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content">
 
             <ImageView
                 android:id="@+id/down"
@@ -121,20 +137,52 @@
                 app:srcCompat="@drawable/arrowdown" />
 
             <TextView
-                android:id="@+id/tickingTimer"
+                android:id="@+id/hours"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@color/white"
-                android:onClick="timerClick"
+                android:onClick="hoursClick"
                 android:paddingVertical="20dp"
-                android:text="@string/timerNumber"
+                android:text="00"
                 android:textColor="@color/darkbrown"
                 android:textSize="50sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintHorizontal_bias="0.3"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
+            <TextView
+            android:id="@+id/minutes"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:onClick="minutesClick"
+            android:paddingVertical="20dp"
+            android:text="00"
+            android:textColor="@color/darkbrown"
+            android:textSize="50sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/seconds"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:onClick="secondsClick"
+                android:paddingVertical="20dp"
+                android:text="00"
+                android:textColor="@color/darkbrown"
+                android:textSize="50sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.7"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
 
             <ImageView
                 android:id="@+id/up"
