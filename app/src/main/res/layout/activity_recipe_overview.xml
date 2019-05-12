@@ -17,4 +17,24 @@
             android:layout_height="wrap_content"
             android:orientation="vertical" />
     </ScrollView>
+
+    <EditText
+        android:id="@+id/ingredientText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="Ingredients"
+        tools:layout_editor_absoluteX="8dp"
+        tools:layout_editor_absoluteY="8dp" />
+
+    <EditText
+        android:id="@+id/portionerText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="4 Portioner"
+        tools:layout_editor_absoluteX="221dp"
+        tools:layout_editor_absoluteY="8dp" />
 </androidx.constraintlayout.widget.ConstraintLayout>
