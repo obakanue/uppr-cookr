@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.cookr">
 
+    <uses-permission android:name="android.permission.VIBRATE" />
+
     <application
         android:allowBackup="true"
         android:icon="@drawable/logo_no_text"
@@ -9,7 +11,8 @@
         android:roundIcon="@drawable/logo_no_text"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
-        <activity android:name=".RecipeActivity"></activity>
+        <activity android:name=".RecipeOverview"></activity>
+        <activity android:name=".RecipeActivity" />
         <activity android:name=".TimerActivity" />
         <activity
             android:name=".MainActivity"
@@ -21,7 +24,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
     </application>
-    <uses-permission android:name="android.permission.VIBRATE" />
+
 </manifest>
