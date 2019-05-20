@@ -19,9 +19,9 @@ public class TimerActivity extends AppCompatActivity implements SensorEventListe
     private SensorManager mSensorManager;
     private Sensor mProximity;
     private static final int SENSOR_SENSITIVITY = 4;
-  // TextView textView;
+    // TextView textView;
     public int seconds, minutes, hours;
-    public int totalTime;
+    public int totalTime, secondsLeft;
     private boolean timerOn, userTimerActivity;
     public boolean secondsHolder, minutesHolder, hoursHolder;
     Vibrator vib;
@@ -40,11 +40,11 @@ public class TimerActivity extends AppCompatActivity implements SensorEventListe
         mProximity = mSensorManager.getDefaultSensor(Sensor.TYPE_PROXIMITY);
         //textView = (TextView)findViewById(R.id.tickingTimer);
 
-        hoursTV = (TextView)findViewById(R.id.hours);
-        minutesTV = (TextView)findViewById(R.id.minutes);
-        secondsTV = (TextView)findViewById(R.id.seconds);
+        hoursTV = (TextView) findViewById(R.id.hours);
+        minutesTV = (TextView) findViewById(R.id.minutes);
+        secondsTV = (TextView) findViewById(R.id.seconds);
 
-        infoPanel = (TextView)findViewById(R.id.infopanel);
+        infoPanel = (TextView) findViewById(R.id.infopanel);
 
         timerOn = false;
         parsedDark = Color.parseColor("#474338");
@@ -58,6 +58,7 @@ public class TimerActivity extends AppCompatActivity implements SensorEventListe
         seconds = 0;
         printTime();
     }
+
     @Override
     protected void onResume() {
         super.onResume();
@@ -78,37 +79,41 @@ public class TimerActivity extends AppCompatActivity implements SensorEventListe
             }
         }
     }
+
     @Override
     public void onAccuracyChanged(Sensor sensor, int accuracy) {
 
     }
-    private void vibrate(int ms){
+
+    private void vibrate(int ms) {
         if (vib.hasVibrator()) {
             vib.vibrate(ms); // for 500 ms
         }
     }
-    private void printTime(){
+
+    private void printTime() {
         printH();
         printMin();
         printSec();
     }
-    private void printH(){
+
+    private void printH() {
         String formatedTime = String.format("%02d", hours);
         hoursTV.setText(formatedTime);
     }
 
-    private void printMin(){
-        String formatedTime = String.format("%02d",  minutes);
+    private void printMin() {
+        String formatedTime = String.format("%02d", minutes);
         minutesTV.setText(formatedTime);
     }
 
-    private void printSec(){
+    private void printSec() {
         String formatedTime = String.format("%02d", seconds);
         secondsTV.setText(formatedTime);
     }
 
-    private void printLabel(int labelType){
-        switch(labelType) {
+    private void printLabel(int labelType) {
+        switch (labelType) {
             case 0:
                 infoPanel.setText("COOKR");
                 break;
@@ -151,19 +156,19 @@ public class TimerActivity extends AppCompatActivity implements SensorEventListe
 
     public void down(View v) {
         printLabel(3);
-        if (hoursHolder){
-            if (hours > 0){
+        if (hoursHolder) {
+            if (hours > 0) {
                 hours--;
                 printH();
             }
         } else if (minutesHolder) {
-            if (minutes>0) {
+            if (minutes > 0) {
                 minutes--;
                 printMin();
             }
 
-        } else if (secondsHolder){
-            if (seconds>0) {
+        } else if (secondsHolder) {
+            if (seconds > 0) {
                 seconds--;
                 printSec();
             }
@@ -172,10 +177,7 @@ public class TimerActivity extends AppCompatActivity implements SensorEventListe
         vibrate(100);
 
 
-
-
     }
-
 
 
     public void timerClick(View v) {
@@ -224,78 +226,80 @@ public class TimerActivity extends AppCompatActivity implements SensorEventListe
         minutesHolder = false;
         secondsHolder = true;
     }
-    public void logoClick(View v) { vibrate(100);
-       if (!timerOn){
-           //textView.setText("cookr");
-       } else {
-           hours++;
 
-       }
+    public void logoClick(View v) {
+        vibrate(100);
+        if (!timerOn) {
+            //textView.setText("cookr");
+        } else {
+            hours++;
+
+        }
     }
 
-    private void setColorTimerAll(int parsedColor){
+    private void setColorTimerAll(int parsedColor) {
         hoursTV.setTextColor(parsedColor);
         minutesTV.setTextColor(parsedColor);
         secondsTV.setTextColor(parsedColor);
-     }
+    }
 
-    private boolean timerSet(){
-        if (seconds == 0 && minutes == 0 && hours == 0){
+    private boolean timerSet() {
+        if (seconds == 0 && minutes == 0 && hours == 0) {
             printLabel(2);
             return false;
         }
         return true;
     }
+
     public void startTimer(View v) {
-       if (timerSet()) {
+        if (timerSet()) {
 
-           if (!timerOn) {
-               printLabel(0);
-               vibrate(500);
-               timerOn = true;
-               setColorTimerAll(parsedDark);
-
-
-               totalTime = seconds + minutes * 60 + hours * 60 * 60;
-
-               new CountDownTimer(totalTime * 1000, 1000) {
-                   public void onTick(long millisUntilFinished) {
-
-                       if (seconds == 0) {
-                           if (minutes > 0) {
-                               seconds = 59;
-                               minutes--;
-                           } else if (hours > 0) {
-                               seconds = 59;
-                               minutes = 59;
-                               hours--;
-                           }
-                       } else {
-                           seconds--;
-                       }
-                       printTime();
-
-                   }
-
-                   public void onFinish() {
-                       //textView.setText("FINISH!!");
-                       // textView.setTextColor(Color.parseColor("#474338"));
-
-                       seconds = 0;
-                       printTime();
-                       setColorTimerAll(parsedLight);
-                       timerOn = false;
-                       vibrate(500);
+            if (!timerOn) {
+                printLabel(0);
+                vibrate(500);
+                timerOn = true;
+                setColorTimerAll(parsedDark);
 
 
-                   }
-               }.start();
+                totalTime = seconds + minutes * 60 + hours * 3600;
 
-           }
-       }
+                new CountDownTimer(totalTime * 1000, 1000) {
+                    public void onTick(long millisUntilFinished) {
+
+                        if (seconds == 0) {
+                            if (minutes > 0) {
+                                seconds = 59;
+                                minutes--;
+                            } else if (hours > 0) {
+                                seconds = 59;
+                                minutes = 59;
+                                hours--;
+                            }
+                        } else {
+                            seconds--;
+                        }
+
+                        printTime();
+
+                    }
+
+                    public void onFinish() {
+                        //textView.setText("FINISH!!");
+                        // textView.setTextColor(Color.parseColor("#474338"));
+
+                        seconds = 0;
+                        printTime();
+                        setColorTimerAll(parsedLight);
+                        timerOn = false;
+                        vibrate(500);
+
+
+                    }
+                }.start();
+
+            }
+        }
     }
-
-
 
 
     public void startTimerOLD(View v) {
