@@ -137,7 +137,7 @@ public class TimerActivity extends AppCompatActivity implements SensorEventListe
                 hours++;
                 printH();
             } else if (minutesHolder) {
-                minutes = minutes + 5;
+                minutes = minutes + 1;
                 printMin();
             } else if (secondsHolder) {
                 seconds = seconds + 5;
