@@ -29,7 +29,8 @@ public class TimerActivity extends AppCompatActivity implements SensorEventListe
     public boolean secondsHolder, minutesHolder, hoursHolder;
     Vibrator vib;
     TextView hoursTV, minutesTV, secondsTV, infoPanel;
-    SpannableString underlined = new SpannableString("");
+    SpannableString underlined;
+    CountDownTimer timer;
 
     private int parsedLight, parsedDark;
 
@@ -78,8 +79,11 @@ public class TimerActivity extends AppCompatActivity implements SensorEventListe
     @Override
     public void onSensorChanged(SensorEvent event) {
         if (event.sensor.getType() == Sensor.TYPE_PROXIMITY) {
-            if (event.values[0] >= -SENSOR_SENSITIVITY && event.values[0] <= SENSOR_SENSITIVITY) {
+            if (event.values[0] >= -SENSOR_SENSITIVITY && event.values[0] <= SENSOR_SENSITIVITY && !timerOn) {
                 startTimer(null);
+            } else if (event.values[0] >= -SENSOR_SENSITIVITY && event.values[0] <= SENSOR_SENSITIVITY && timerOn){
+                timerOn = false;
+                timer.cancel();
             }
         }
     }
@@ -297,7 +301,7 @@ public class TimerActivity extends AppCompatActivity implements SensorEventListe
 
                 totalTime = seconds + minutes * 60 + hours * 3600;
 
-                new CountDownTimer(totalTime * 1000, 1000) {
+                timer = new CountDownTimer(totalTime * 1000, 1000) {
                     public void onTick(long millisUntilFinished) {
 
                         if (seconds == 0) {
@@ -334,7 +338,6 @@ public class TimerActivity extends AppCompatActivity implements SensorEventListe
             }
         }
     }
-
 
     public void startTimerOLD(View v) {
         if (!timerOn) {
