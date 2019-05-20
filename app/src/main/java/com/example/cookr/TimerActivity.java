@@ -4,12 +4,15 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
 import android.graphics.Color;
+import android.graphics.Paint;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.text.SpannableString;
+import android.text.style.UnderlineSpan;
 import android.view.View;
 import android.widget.TextView;
 import android.os.Vibrator;
@@ -26,6 +29,7 @@ public class TimerActivity extends AppCompatActivity implements SensorEventListe
     public boolean secondsHolder, minutesHolder, hoursHolder;
     Vibrator vib;
     TextView hoursTV, minutesTV, secondsTV, infoPanel;
+    SpannableString underlined = new SpannableString("");
 
     private int parsedLight, parsedDark;
 
@@ -99,17 +103,39 @@ public class TimerActivity extends AppCompatActivity implements SensorEventListe
 
     private void printH() {
         String formatedTime = String.format("%02d", hours);
-        hoursTV.setText(formatedTime);
+
+        if (hoursHolder) {
+            SpannableString underlined = new SpannableString(formatedTime + ":");
+            underlined.setSpan(new UnderlineSpan(), 0, 2, 0);
+            hoursTV.setText(underlined);
+        } else {
+            hoursTV.setText(formatedTime + ":");
+        }
+
     }
 
     private void printMin() {
         String formatedTime = String.format("%02d", minutes);
-        minutesTV.setText(formatedTime);
+
+        if (minutesHolder) {
+            SpannableString underlined = new SpannableString(formatedTime + ":");
+            underlined.setSpan(new UnderlineSpan(), 0, 2, 0);
+            minutesTV.setText(underlined);
+        } else {
+            minutesTV.setText(formatedTime + ":");
+        }
     }
 
     private void printSec() {
         String formatedTime = String.format("%02d", seconds);
-        secondsTV.setText(formatedTime);
+
+        if (secondsHolder) {
+            SpannableString underlined = new SpannableString(formatedTime);
+            underlined.setSpan(new UnderlineSpan(), 0, 2, 0);
+            secondsTV.setText(underlined);
+        } else {
+            secondsTV.setText(formatedTime);
+        }
     }
 
     private void printLabel(int labelType) {
@@ -150,7 +176,6 @@ public class TimerActivity extends AppCompatActivity implements SensorEventListe
             }
 
             vibrate(100);
-            printTime();
         }
     }
 
@@ -202,9 +227,12 @@ public class TimerActivity extends AppCompatActivity implements SensorEventListe
         hoursTV.setTextColor(parsedDark);
         minutesTV.setTextColor(parsedLight);
         secondsTV.setTextColor(parsedLight);
+
         hoursHolder = true;
         minutesHolder = false;
         secondsHolder = false;
+
+        printTime();
     }
 
     public void minutesClick(View v) {
@@ -212,9 +240,12 @@ public class TimerActivity extends AppCompatActivity implements SensorEventListe
         hoursTV.setTextColor(parsedLight);
         minutesTV.setTextColor(parsedDark);
         secondsTV.setTextColor(parsedLight);
+
         hoursHolder = false;
         minutesHolder = true;
         secondsHolder = false;
+
+        printTime();
     }
 
     public void secondsClick(View v) {
@@ -222,9 +253,12 @@ public class TimerActivity extends AppCompatActivity implements SensorEventListe
         hoursTV.setTextColor(parsedLight);
         minutesTV.setTextColor(parsedLight);
         secondsTV.setTextColor(parsedDark);
+
         hoursHolder = false;
         minutesHolder = false;
         secondsHolder = true;
+
+        printTime();
     }
 
     public void logoClick(View v) {
