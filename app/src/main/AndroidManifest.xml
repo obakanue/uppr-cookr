@@ -11,7 +11,8 @@
         android:roundIcon="@drawable/logo_no_text"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
-        <activity android:name=".RecipeOverview"></activity>
+        <activity android:name=".InstructionActivity"></activity>
+        <activity android:name=".RecipeOverview" />
         <activity android:name=".RecipeActivity" />
         <activity android:name=".TimerActivity" />
         <activity

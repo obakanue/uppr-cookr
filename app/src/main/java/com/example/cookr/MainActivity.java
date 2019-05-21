@@ -79,6 +79,13 @@ public class MainActivity extends AppCompatActivity
         startActivity(intent);
 
     }
+
+    public void startInstructionActivity(View v) {
+
+        Intent intent = new Intent(this, InstructionActivity.class);
+        startActivity(intent);
+
+    }
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
