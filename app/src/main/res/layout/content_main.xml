@@ -80,7 +80,7 @@
                 android:id="@+id/recipes"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:onClick="startRecipeActicity"
+                android:onClick="startRecipeActivity"
                 android:paddingVertical="20dp"
                 android:text="@string/recipes"
                 android:textColor="@color/white"
