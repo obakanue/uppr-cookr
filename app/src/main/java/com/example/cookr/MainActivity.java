@@ -68,7 +68,7 @@ public class MainActivity extends AppCompatActivity
 
         return super.onOptionsItemSelected(item);
     }
-    public void startRecipeActicity(View v){
+    public void startRecipeActivity(View v){
         Intent intent = new Intent(this, RecipeActivity.class);
         startActivity(intent);
 
