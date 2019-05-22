@@ -28,7 +28,7 @@ public class TimerActivity extends AppCompatActivity implements SensorEventListe
     private boolean timerOn, userTimerActivity;
     public boolean secondsHolder, minutesHolder, hoursHolder;
     Vibrator vib;
-    TextView hoursTV, minutesTV, secondsTV, infoPanel;
+    TextView hoursTV, minutesTV, secondsTV, infoPanel, startStopButton;
     SpannableString underlined;
     CountDownTimer timer;
 
@@ -48,6 +48,7 @@ public class TimerActivity extends AppCompatActivity implements SensorEventListe
         hoursTV = (TextView) findViewById(R.id.hours);
         minutesTV = (TextView) findViewById(R.id.minutes);
         secondsTV = (TextView) findViewById(R.id.seconds);
+        startStopButton = (TextView) findViewById(R.id.startTimerOnClick);
 
         infoPanel = (TextView) findViewById(R.id.infopanel);
 
@@ -141,6 +142,8 @@ public class TimerActivity extends AppCompatActivity implements SensorEventListe
             secondsTV.setText(formatedTime);
         }
     }
+
+
 
     private void printLabel(int labelType) {
         switch (labelType) {
@@ -288,11 +291,24 @@ public class TimerActivity extends AppCompatActivity implements SensorEventListe
         }
         return true;
     }
+    private void printStartStopButtonText(int labelType) {
+        switch (labelType) {
+            case 0:
+                startStopButton.setText("START");
+                break;
+            case 1:
+                startStopButton.setText("STOP");
+                break;
 
+            default:
+                // code block
+        }
+    }
     public void startTimer(View v) {
         if (timerSet()) {
 
             if (!timerOn) {
+                printStartStopButtonText(1);
                 printLabel(0);
                 vibrate(500);
                 timerOn = true;
@@ -334,6 +350,12 @@ public class TimerActivity extends AppCompatActivity implements SensorEventListe
 
                     }
                 }.start();
+
+            } else {
+                vibrate(500);
+                printStartStopButtonText(0);
+                timerOn = false;
+                timer.cancel();
 
             }
         }
