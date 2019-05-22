@@ -1,10 +1,13 @@
 package com.example.cookr;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
+import android.content.BroadcastReceiver;
 import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.graphics.Color;
-import android.graphics.Paint;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
@@ -31,8 +34,10 @@ public class TimerActivity extends AppCompatActivity implements SensorEventListe
     TextView hoursTV, minutesTV, secondsTV, infoPanel, startStopButton;
     SpannableString underlined;
     CountDownTimer timer;
-
     private int parsedLight, parsedDark;
+    Intent timerService;
+
+
 
 
     @Override
@@ -43,8 +48,8 @@ public class TimerActivity extends AppCompatActivity implements SensorEventListe
         mSensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
         vib = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
         mProximity = mSensorManager.getDefaultSensor(Sensor.TYPE_PROXIMITY);
-        //textView = (TextView)findViewById(R.id.tickingTimer);
 
+        timerService = new Intent(this, TimerService.class);
         hoursTV = (TextView) findViewById(R.id.hours);
         minutesTV = (TextView) findViewById(R.id.minutes);
         secondsTV = (TextView) findViewById(R.id.seconds);
@@ -62,20 +67,49 @@ public class TimerActivity extends AppCompatActivity implements SensorEventListe
         minutes = 0;
         hours = 0;
         seconds = 0;
-        printTime();
+
+        LocalBroadcastManager.getInstance(this).registerReceiver(bReceiver, new IntentFilter("timerStatsFromService"));
+       // printTime();
+    }
+    @Override
+    public void onBackPressed() {
+
+       // timer.cancel();
+
+        super.onBackPressed();
+      //  moveTaskToBack(false);
+
     }
 
     @Override
     protected void onResume() {
-        super.onResume();
         mSensorManager.registerListener(this, mProximity, SensorManager.SENSOR_DELAY_NORMAL);
+
+        Intent myService = new Intent(TimerActivity.this, TimerService.class);
+        stopService(timerService);
+
+
+
+        super.onResume();
+
     }
+
+
 
     @Override
     protected void onPause() {
-        super.onPause();
+        if (timerOn) {
+            timerService.putExtra("sec", seconds);
+            timerService.putExtra("min", minutes);
+            timerService.putExtra("hours", hours);
+            Intent myService = new Intent(TimerActivity.this, TimerService.class);
+            startService(timerService);
+        }
+
         mSensorManager.unregisterListener(this);
+        super.onPause();
     }
+
 
     @Override
     public void onSensorChanged(SensorEvent event) {
@@ -94,6 +128,22 @@ public class TimerActivity extends AppCompatActivity implements SensorEventListe
 
     }
 
+    private BroadcastReceiver bReceiver = new BroadcastReceiver(){
+
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            minutes = intent.getIntExtra("min", 0);
+            seconds = intent.getIntExtra("sec", 0);
+            hours = intent.getIntExtra("hours", 0);
+            printTime();
+            minutesHolder = true;
+            secondsHolder = true;
+            hoursHolder = true;
+            timerOn = false;
+            startTimer(null);
+
+        }
+    };
     private void vibrate(int ms) {
         if (vib.hasVibrator()) {
             vib.vibrate(ms); // for 500 ms
@@ -182,7 +232,6 @@ public class TimerActivity extends AppCompatActivity implements SensorEventListe
                 printSec();
             }
 
-            vibrate(100);
         }
     }
 
@@ -206,31 +255,17 @@ public class TimerActivity extends AppCompatActivity implements SensorEventListe
             }
         }
 
-        vibrate(100);
 
 
-    }
-
-
-    public void timerClick(View v) {
-        userTimerActivity = true;
-        if (!timerOn) {
-            vibrate(100);
-            minutes = 0;
-            hours = 0;
-            seconds = 0;
-            printTime();
-        } else {
-            if (hours > 0) {
-                vibrate(100);
-                hours--;
-            }
-        }
     }
 
 
     public void hoursClick(View v) {
+        if (!timerOn){
+            printStartStopButtonText(0);
+        }
         userTimerActivity = true;
+
         hoursTV.setTextColor(parsedDark);
         minutesTV.setTextColor(parsedLight);
         secondsTV.setTextColor(parsedLight);
@@ -243,7 +278,12 @@ public class TimerActivity extends AppCompatActivity implements SensorEventListe
     }
 
     public void minutesClick(View v) {
+        if (!timerOn){
+            printStartStopButtonText(0);
+
+        }
         userTimerActivity = true;
+
         hoursTV.setTextColor(parsedLight);
         minutesTV.setTextColor(parsedDark);
         secondsTV.setTextColor(parsedLight);
@@ -256,6 +296,10 @@ public class TimerActivity extends AppCompatActivity implements SensorEventListe
     }
 
     public void secondsClick(View v) {
+        if (!timerOn){
+            printStartStopButtonText(0);
+
+        }
         userTimerActivity = true;
         hoursTV.setTextColor(parsedLight);
         minutesTV.setTextColor(parsedLight);
@@ -299,57 +343,73 @@ public class TimerActivity extends AppCompatActivity implements SensorEventListe
             case 1:
                 startStopButton.setText("STOP");
                 break;
+            case 2:
+                startStopButton.setText("FINNISH");
+                break;
 
             default:
                 // code block
         }
+
+
     }
+
+    private void onTimerStartUI(){
+
+        printStartStopButtonText(1);
+        printLabel(0);
+
+        setColorTimerAll(parsedDark);
+    }
+    private void onTimerFinnishUI(){
+        if (timerOn) {
+
+            printTime();
+            printStartStopButtonText(2);
+            setColorTimerAll(parsedLight);
+            vibrate(500);
+        }
+    }
+    public void timerLogic(){
+        totalTime = seconds + minutes * 60 + hours * 3600;
+        timer = new CountDownTimer(totalTime * 1000, 1000) {
+
+            public void onTick(long millisUntilFinished) {
+
+                if (seconds == 0) {
+                    if (minutes > 0) {
+                        seconds = 59;
+                        minutes--;
+                    } else if (hours > 0) {
+                        seconds = 59;
+                        minutes = 59;
+                        hours--;
+                    }
+                } else {
+                    seconds--;
+                }
+
+                printTime();
+
+            }
+
+            public void onFinish() {
+
+                onTimerFinnishUI();
+
+                timerOn = false;
+            }
+        }.start();
+    }
+
     public void startTimer(View v) {
         if (timerSet()) {
 
             if (!timerOn) {
-                printStartStopButtonText(1);
-                printLabel(0);
-                vibrate(500);
+               onTimerStartUI();
+
                 timerOn = true;
-                setColorTimerAll(parsedDark);
-
-
-                totalTime = seconds + minutes * 60 + hours * 3600;
-
-                timer = new CountDownTimer(totalTime * 1000, 1000) {
-                    public void onTick(long millisUntilFinished) {
-
-                        if (seconds == 0) {
-                            if (minutes > 0) {
-                                seconds = 59;
-                                minutes--;
-                            } else if (hours > 0) {
-                                seconds = 59;
-                                minutes = 59;
-                                hours--;
-                            }
-                        } else {
-                            seconds--;
-                        }
-
-                        printTime();
-
-                    }
-
-                    public void onFinish() {
-                        //textView.setText("FINISH!!");
-                        // textView.setTextColor(Color.parseColor("#474338"));
-
-                        seconds = 0;
-                        printTime();
-                        setColorTimerAll(parsedLight);
-                        timerOn = false;
-                        vibrate(500);
-
-
-                    }
-                }.start();
+                timerLogic();
 
             } else {
                 vibrate(500);
@@ -357,45 +417,13 @@ public class TimerActivity extends AppCompatActivity implements SensorEventListe
                 timerOn = false;
                 timer.cancel();
 
-            }
+           }
         }
     }
 
-    public void startTimerOLD(View v) {
-        if (!timerOn) {
-            vibrate(500);
-            timerOn = true;
-            //textView.setTextColor(Color.parseColor("#725F42"));
-            totalTime = seconds + minutes * 60 + hours * 60 * 60;
 
-            new CountDownTimer(totalTime * 1000, 1000) {
-                public void onTick(long millisUntilFinished) {
-                    printTime();
-                    if (seconds == 0) {
-                        if (minutes > 0) {
-                            seconds = 59;
-                            minutes--;
-                        } else if (hours > 0) {
-                            seconds = 59;
-                            minutes = 59;
-                            hours--;
-                        }
-                    } else {
-                        seconds--;
-                    }
-
-                }
-
-                public void onFinish() {
-                    //textView.setText("FINISH!!");
-                    // textView.setTextColor(Color.parseColor("#474338"));
-                    vibrate(500);
-                    timerOn = false;
-                }
-            }.start();
-
-        }
-    }
 }
+
+
 
 
