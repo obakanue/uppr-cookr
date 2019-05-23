@@ -20,8 +20,15 @@ import android.view.View;
 import android.widget.TextView;
 import android.os.Vibrator;
 
+import org.opencv.android.BaseLoaderCallback;
+import org.opencv.android.LoaderCallbackInterface;
+import org.opencv.android.OpenCVLoader;
 
-public class TimerActivity extends AppCompatActivity implements SensorEventListener {
+import edu.washington.cs.touchfreelibrary.sensors.CameraGestureSensor;
+import edu.washington.cs.touchfreelibrary.sensors.ClickSensor;
+
+
+public class TimerActivity extends AppCompatActivity implements SensorEventListener , edu.washington.cs.touchfreelibrary.sensors.CameraGestureSensor.Listener, edu.washington.cs.touchfreelibrary.sensors.ClickSensor.Listener {
     private SensorManager mSensorManager;
     private Sensor mProximity;
     private static final int SENSOR_SENSITIVITY = 4;
@@ -29,6 +36,7 @@ public class TimerActivity extends AppCompatActivity implements SensorEventListe
     public int seconds, minutes, hours;
     public int totalTime, secondsLeft;
     private boolean timerOn, userTimerActivity;
+    boolean mOpenCVInitiated;
     public boolean secondsHolder, minutesHolder, hoursHolder;
     Vibrator vib;
     TextView hoursTV, minutesTV, secondsTV, infoPanel, startStopButton;
@@ -37,13 +45,16 @@ public class TimerActivity extends AppCompatActivity implements SensorEventListe
     private int parsedLight, parsedDark;
     Intent timerService;
 
-
+    CameraGestureSensor mGestureSensor;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_timer);
+        OpenCVLoader.initAsync(OpenCVLoader.OPENCV_VERSION_2_4_3, this, mLoaderCallback);
+
+
 
         mSensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
         vib = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
@@ -69,6 +80,8 @@ public class TimerActivity extends AppCompatActivity implements SensorEventListe
         seconds = 0;
 
         LocalBroadcastManager.getInstance(this).registerReceiver(bReceiver, new IntentFilter("timerStatsFromService"));
+
+        mGestureSensor = new CameraGestureSensor(this);
        // printTime();
     }
     @Override
@@ -89,7 +102,7 @@ public class TimerActivity extends AppCompatActivity implements SensorEventListe
         stopService(timerService);
 
 
-
+        mGestureSensor.start();
         super.onResume();
 
     }
@@ -105,7 +118,7 @@ public class TimerActivity extends AppCompatActivity implements SensorEventListe
             Intent myService = new Intent(TimerActivity.this, TimerService.class);
             startService(timerService);
         }
-
+        mGestureSensor.stop();
         mSensorManager.unregisterListener(this);
         super.onPause();
     }
@@ -114,11 +127,11 @@ public class TimerActivity extends AppCompatActivity implements SensorEventListe
     @Override
     public void onSensorChanged(SensorEvent event) {
         if (event.sensor.getType() == Sensor.TYPE_PROXIMITY) {
-            if (event.values[0] >= -SENSOR_SENSITIVITY && event.values[0] <= SENSOR_SENSITIVITY && !timerOn) {
-                startTimer(null);
-            } else if (event.values[0] >= -SENSOR_SENSITIVITY && event.values[0] <= SENSOR_SENSITIVITY && timerOn){
-                timerOn = false;
-                timer.cancel();
+            if (event.values[0] >= -SENSOR_SENSITIVITY && event.values[0] <= SENSOR_SENSITIVITY ) {
+               // startTimer(null);
+
+                mGestureSensor.addGestureListener(this);
+                mGestureSensor.addClickListener(this);
             }
         }
     }
@@ -295,6 +308,7 @@ public class TimerActivity extends AppCompatActivity implements SensorEventListe
         printTime();
     }
 
+
     public void secondsClick(View v) {
         if (!timerOn){
             printStartStopButtonText(0);
@@ -409,6 +423,8 @@ public class TimerActivity extends AppCompatActivity implements SensorEventListe
                onTimerStartUI();
 
                 timerOn = true;
+                vibrate(500);
+
                 timerLogic();
 
             } else {
@@ -420,8 +436,53 @@ public class TimerActivity extends AppCompatActivity implements SensorEventListe
            }
         }
     }
+    /** OpenCV library initialization. */
+    private BaseLoaderCallback mLoaderCallback = new BaseLoaderCallback(this) {
+        @Override
+        public void onManagerConnected(int status) {
+            switch (status) {
+                case LoaderCallbackInterface.SUCCESS: {
+                    mOpenCVInitiated = true;
+                    edu.washington.cs.touchfreelibrary.sensors.CameraGestureSensor.loadLibrary();
+                    mGestureSensor.start(); 	// your main gesture sensor object
 
+                } break;
+                default:
+                {
+                    super.onManagerConnected(status);
+                } break;
+            }
+        }
+    };
 
+    @Override
+    public void onGestureUp(CameraGestureSensor cameraGestureSensor, long l) {
+        vibrate(500);
+    }
+
+    @Override
+    public void onGestureDown(CameraGestureSensor cameraGestureSensor, long l) {
+        vibrate(500);
+
+    }
+
+    @Override
+    public void onGestureLeft(CameraGestureSensor cameraGestureSensor, long l) {
+        vibrate(500);
+
+    }
+
+    @Override
+    public void onGestureRight(CameraGestureSensor cameraGestureSensor, long l) {
+        vibrate(500);
+
+    }
+
+    @Override
+    public void onSensorClick(ClickSensor clickSensor) {
+        vibrate(500);
+
+    }
 }
 
 
