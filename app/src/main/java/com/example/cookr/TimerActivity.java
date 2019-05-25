@@ -24,6 +24,7 @@ import android.os.Vibrator;
 public class TimerActivity extends AppCompatActivity implements SensorEventListener {
     private SensorManager mSensorManager;
     private Sensor mProximity;
+    private Sensor mAccerelometer;
     private static final int SENSOR_SENSITIVITY = 4;
     // TextView textView;
     public int seconds, minutes, hours;
@@ -36,6 +37,10 @@ public class TimerActivity extends AppCompatActivity implements SensorEventListe
     CountDownTimer timer;
     private int parsedLight, parsedDark;
     Intent timerService;
+    private float[] mLastAccelerometer = new float[5];
+    static final float ALPHA = 0.25f; // if ALPHA = 1 OR 0, no filter applies.
+    final Context c = this;
+    boolean differenceChange;
 
 
 
