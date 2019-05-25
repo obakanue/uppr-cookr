@@ -13,11 +13,16 @@
     <string name="green">GREEN</string>
     <string name="red">RED</string>
     <string name="blue">BLUE</string>
+    <string name="orange">ORANGE</string>
     <string name="addRecipe">ADD RECIPE</string>
     <string name="timer">TIMER</string>
     <string name="start_timer">START</string>
     <string name="timerNumber">00:00:00</string>
     <string name="cookr_logo">cookr-logo</string>
+    <string name="step_1">STEP 1: MIX 2 ½ FLOUR WITH ½ TBSP SALT IN A BOWL.</string>
+    <string name="step_2">STEP 2: WHIP THE FLOUR MIX TOGETHER WITH HALF OF THE MILK (6 DL). THEN WHIP TOGETHER THE MIX WITH THE REST OF THE MILK AND THE 3 EGGS.</string>
+    <string name="step_3">STEP 3: MELT PART OF THE BUTTER IN THE PAN AND POUR OUT A THIN LAYER OF MIX TO COVER THE WHOLE PAN. FRY FOR 30 SECONDS ON EACH SIDE UNTIL FINISHING ALL OF THE MIX. (10 MIN) </string>
+    <string name="step_4">STEP 4: SERVE WITH YAM, BERRIES OR FRUIT.</string>
     <color name="white">#FFFFFF</color>
     <color name="khaki">#9A8977</color>
     <color name="darkbrown">#474338</color>
