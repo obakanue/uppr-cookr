@@ -18,7 +18,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        android:focusable="true">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -50,10 +51,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical" />
     </ScrollView>
 
     <EditText
@@ -67,7 +64,8 @@
         android:inputType="textPersonName"
         android:text="Ingredients"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:autofillHints="" />
 
     <EditText
         android:id="@+id/portionerText"
@@ -80,7 +78,8 @@
         android:inputType="textPersonName"
         android:text="4 Portioner"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:autofillHints="" />
     <ListView
         android:layout_width="396dp"
         android:layout_height="478dp"
@@ -91,51 +90,5 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="195dp"
-        android:layout_height="wrap_content"
-        android:text="2 1/2 dl vetemjöl"
-        tools:layout_editor_absoluteX="37dp"
-        tools:layout_editor_absoluteY="82dp" />
 
-    <TextView
-        android:id="@+id/textView3"
-        android:layout_width="195dp"
-        android:layout_height="wrap_content"
-        android:text="1/2 tsk salt"
-        tools:layout_editor_absoluteX="37dp"
-        tools:layout_editor_absoluteY="102dp" />
-
-    <TextView
-        android:id="@+id/textView4"
-        android:layout_width="195dp"
-        android:layout_height="17dp"
-        android:text="6 dl mjölk"
-        tools:layout_editor_absoluteX="37dp"
-        tools:layout_editor_absoluteY="122dp" />
-
-    <TextView
-        android:id="@+id/textView5"
-        android:layout_width="195dp"
-        android:layout_height="wrap_content"
-        android:text="3 ägg"
-        tools:layout_editor_absoluteX="37dp"
-        tools:layout_editor_absoluteY="142dp" />
-
-    <TextView
-        android:id="@+id/textView6"
-        android:layout_width="195dp"
-        android:layout_height="wrap_content"
-        android:text="3 msk smör"
-        tools:layout_editor_absoluteX="37dp"
-        tools:layout_editor_absoluteY="162dp" />
-
-    <TextView
-        android:id="@+id/textView7"
-        android:layout_width="195dp"
-        android:layout_height="wrap_content"
-        android:text="sylt, bär eller frukt till servering"
-        tools:layout_editor_absoluteX="37dp"
-        tools:layout_editor_absoluteY="182dp" />
 </androidx.constraintlayout.widget.ConstraintLayout>
