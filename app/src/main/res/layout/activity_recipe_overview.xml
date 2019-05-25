@@ -6,7 +6,42 @@
     android:layout_height="match_parent"
     tools:context=".RecipeOverview">
 
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardView"
+        android:layout_width="260dp"
+        android:layout_height="73dp"
+        android:layout_marginTop="578dp"
+        android:clickable="true"
+        app:cardBackgroundColor="@color/khaki"
+        app:cardCornerRadius="25dp"
+        app:cardElevation="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/startStepsOnClick"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingVertical="20dp"
+                android:text="@string/steps"
+                android:textColor="@color/white"
+                android:textSize="25sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+
     <ScrollView
+        android:id="@+id/scrollView2"
         android:layout_width="395dp"
         android:layout_height="715dp"
         android:layout_marginStart="8dp"
@@ -47,51 +82,14 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="195dp"
-        android:layout_height="wrap_content"
-        android:text="2 1/2 dl vetemjöl"
-        tools:layout_editor_absoluteX="37dp"
-        tools:layout_editor_absoluteY="82dp" />
-
-    <TextView
-        android:id="@+id/textView3"
-        android:layout_width="195dp"
-        android:layout_height="wrap_content"
-        android:text="1/2 tsk salt"
-        tools:layout_editor_absoluteX="37dp"
-        tools:layout_editor_absoluteY="102dp" />
-
-    <TextView
-        android:id="@+id/textView4"
-        android:layout_width="195dp"
-        android:layout_height="17dp"
-        android:text="6 dl mjölk"
-        tools:layout_editor_absoluteX="37dp"
-        tools:layout_editor_absoluteY="122dp" />
-
-    <TextView
-        android:id="@+id/textView5"
-        android:layout_width="195dp"
-        android:layout_height="wrap_content"
-        android:text="3 ägg"
-        tools:layout_editor_absoluteX="37dp"
-        tools:layout_editor_absoluteY="142dp" />
-
-    <TextView
-        android:id="@+id/textView6"
-        android:layout_width="195dp"
-        android:layout_height="wrap_content"
-        android:text="3 msk smör"
-        tools:layout_editor_absoluteX="37dp"
-        tools:layout_editor_absoluteY="162dp" />
-
-    <TextView
-        android:id="@+id/textView7"
-        android:layout_width="195dp"
-        android:layout_height="wrap_content"
-        android:text="sylt, bär eller frukt till servering"
-        tools:layout_editor_absoluteX="37dp"
-        tools:layout_editor_absoluteY="182dp" />
+    <ListView
+        android:layout_width="396dp"
+        android:layout_height="478dp"
+        android:layout_marginTop="90dp"
+        android:entries="@array/ingredient_items"
+        android:fadeScrollbars="true"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

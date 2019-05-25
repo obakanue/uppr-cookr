@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="ingredient_items">
+        <item>2 ½ ALL PURPOSE FLOUR</item>
+        <item>½ TSP SALT</item>
+        <item>6 DL MILK</item>
+        <item>3 EGGS</item>
+        <item>3 TBLSP BUTTER</item>
+        <item>JAM, BUTTER OR FRUIT FOR TOPPING</item>
+    </string-array>
+</resources>
