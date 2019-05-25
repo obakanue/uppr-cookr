@@ -3,11 +3,13 @@ package com.example.cookr;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
+import android.content.Intent;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.TextView;
 
 public class RecipeOverview extends AppCompatActivity implements SensorEventListener{
@@ -23,6 +25,12 @@ public class RecipeOverview extends AppCompatActivity implements SensorEventList
         mSensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
         mProximity = mSensorManager.getDefaultSensor(Sensor.TYPE_PROXIMITY);
         startStepButton = (TextView) findViewById(R.id.startStepsOnClick);
+    }
+
+    public void startStepButton(View v) {
+        Intent intent = new Intent(this, StepActivity.class);
+        startActivity(intent);
+
     }
 
     @Override
