@@ -42,10 +42,10 @@ public class RecipeOverview extends AppCompatActivity implements SensorEventList
         if (event.sensor.getType() == Sensor.TYPE_PROXIMITY) {
             if (event.values[0] >= -SENSOR_SENSITIVITY && event.values[0] <= SENSOR_SENSITIVITY) {
                 //near
-                distance.setText("Near");
+                //distance.setText("Near");
             } else {
                 //far
-                distance.setText("Far");
+                //distance.setText("Far");
             }
         }
     }

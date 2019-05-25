@@ -84,15 +84,16 @@
     </androidx.cardview.widget.CardView>
 
     <ListView
+        android:id="@+id/listview"
         android:layout_width="396dp"
         android:layout_height="478dp"
         android:layout_marginTop="90dp"
+        android:clickable="true"
         android:entries="@array/list_items"
+        android:fadeScrollbars="true"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:fadeScrollbars="true"
-        />
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
