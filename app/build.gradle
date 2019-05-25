@@ -28,4 +28,5 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.0-alpha4'
     implementation 'androidx.cardview:cardview:1.0.0'
     implementation files('libs/HandWave.jar')
+    implementation 'androidx.viewpager:viewpager:1.0.0'
 }
