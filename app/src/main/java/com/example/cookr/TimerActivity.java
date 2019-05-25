@@ -38,8 +38,6 @@ public class TimerActivity extends AppCompatActivity implements SensorEventListe
     Intent timerService;
 
 
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
