@@ -25,6 +25,9 @@
     <string name="step_4">STEP 4: SERVE WITH YAM, BERRIES OR FRUIT.</string>
     <string name="cookr_menu">COOKR MENU</string>
     <string name="slide_arrow_signifier">Slide Arrow Signifier</string>
+    <string name="by_holding_your_hand_over_the_phone_you_can_swithc_between_timer_and_recipe">BY HOLDING YOUR HAND OVER THE PHONE YOU CAN SWITCH BETWEEN TIMER AND RECIPE</string>
+    <string name="timer_mode_swipe_hand_over_phone_in_order_to_start_or_pause_the_timer">TIMER MODE: SWIPE HAND OVER PHONE IN ORDER TO START OR PAUSE THE TIMER</string>
+    <string name="recipe_mode_swipe_hand_over_phone_in_order_to_swipe_instructions_or_flick_the_phone_instead">RECIPE MODE: SWIPE HAND OVER PHONE IN ORDER TO SWIPE INSTRUCTIONS, OR FLICK THE PHONE INSTEAD</string>
     <color name="white">#FFFFFF</color>
     <color name="khaki">#9A8977</color>
     <color name="darkbrown">#474338</color>
