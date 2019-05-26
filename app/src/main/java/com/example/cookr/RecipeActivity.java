@@ -23,7 +23,6 @@ public class RecipeActivity extends AppCompatActivity implements SensorEventList
     private SensorManager mSensorManager;
     private Sensor mProximity;
     private static final int SENSOR_SENSITIVITY = 4;
-    private TextView distance;
     String recipeArray[];
 
     @Override
@@ -34,7 +33,6 @@ public class RecipeActivity extends AppCompatActivity implements SensorEventList
 
         mSensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
         mProximity = mSensorManager.getDefaultSensor(Sensor.TYPE_PROXIMITY);
-        distance = (TextView) findViewById(R.id.distance);
 
         ListView recipe_list = findViewById(R.id.listview);
         recipe_list.setOnItemClickListener(listener());
@@ -73,10 +71,10 @@ public class RecipeActivity extends AppCompatActivity implements SensorEventList
         if (event.sensor.getType() == Sensor.TYPE_PROXIMITY) {
             if (event.values[0] >= -SENSOR_SENSITIVITY && event.values[0] <= SENSOR_SENSITIVITY) {
                 //near
-                distance.setText("Near");
+
             } else {
                 //far
-                distance.setText("Far");
+
             }
         }
     }
