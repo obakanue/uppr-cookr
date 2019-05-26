@@ -9,6 +9,7 @@ import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.os.Bundle;
+import android.text.InputType;
 import android.view.View;
 import android.widget.TextView;
 
@@ -16,7 +17,7 @@ public class RecipeOverview extends AppCompatActivity implements SensorEventList
     private SensorManager mSensorManager;
     private Sensor mProximity;
     private static final int SENSOR_SENSITIVITY = 4;
-    private TextView distance, startStepButton;
+    private TextView distance, startStepButton, textIngredients, textPortions;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,6 +26,11 @@ public class RecipeOverview extends AppCompatActivity implements SensorEventList
         mSensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
         mProximity = mSensorManager.getDefaultSensor(Sensor.TYPE_PROXIMITY);
         startStepButton = (TextView) findViewById(R.id.startStepsOnClick);
+        textIngredients = (TextView) findViewById(R.id.ingredientText);
+        textPortions = (TextView) findViewById(R.id.portionerText);
+
+        textIngredients.setInputType(InputType.TYPE_NULL);
+        textPortions.setInputType(InputType.TYPE_NULL);
     }
 
     public void startStepButton(View v) {
