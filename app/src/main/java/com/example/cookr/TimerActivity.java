@@ -28,8 +28,9 @@ public class TimerActivity extends AppCompatActivity implements SensorEventListe
     // TextView textView;
     public int seconds, minutes, hours;
     public int totalTime, secondsLeft;
-    private boolean timerOn, userTimerActivity;
+    private boolean timerOn, userTimerActivity, covered = false;
     public boolean secondsHolder, minutesHolder, hoursHolder;
+    private long coverTime, time;
     Vibrator vib;
     TextView hoursTV, minutesTV, secondsTV, infoPanel, startStopButton;
     SpannableString underlined;
@@ -112,11 +113,25 @@ public class TimerActivity extends AppCompatActivity implements SensorEventListe
     @Override
     public void onSensorChanged(SensorEvent event) {
         if (event.sensor.getType() == Sensor.TYPE_PROXIMITY) {
-            if (event.values[0] >= -SENSOR_SENSITIVITY && event.values[0] <= SENSOR_SENSITIVITY && !timerOn) {
-                startTimer(null);
-            } else if (event.values[0] >= -SENSOR_SENSITIVITY && event.values[0] <= SENSOR_SENSITIVITY && timerOn){
-                timerOn = false;
-                timer.cancel();
+            time = System.currentTimeMillis();
+            if (event.values[0] >= -SENSOR_SENSITIVITY && event.values[0] <= SENSOR_SENSITIVITY) {
+                //near
+                covered = true;
+                coverTime = System.currentTimeMillis();
+            } else {
+                if (time - coverTime < 1000 && covered) {
+                    if (!timerOn) {
+                        startTimer(null);
+                    } else {
+                        timerOn = false;
+                        timer.cancel();
+                    }
+                    covered = false;
+                } else if (time - coverTime >= 1000 && covered) {
+                    Intent intent = new Intent(TimerActivity.this, StepActivity.class);
+                    startActivity(intent);
+                    covered = false;
+                }
             }
         }
     }
@@ -315,7 +330,7 @@ public class TimerActivity extends AppCompatActivity implements SensorEventListe
         if (!timerOn) {
             //textView.setText("cookr");
         } else {
-            hours++;
+           // hours++;
 
         }
     }
