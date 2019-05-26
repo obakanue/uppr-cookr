@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
 
 import android.content.Context;
+import android.content.Intent;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
@@ -18,9 +19,10 @@ public class StepActivity extends AppCompatActivity implements SensorEventListen
     private Sensor mProximity;
     private Sensor mAccelerometer;
     private static final int SENSOR_SENSITIVITY = 4;
-    private boolean turned = false;
+    private boolean turned = false, covered = false;
     private float accYValue;
     private ViewPager viewPager;
+    private long coverTime, time;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,9 +53,21 @@ public class StepActivity extends AppCompatActivity implements SensorEventListen
     @Override
     public void onSensorChanged(SensorEvent event) {
         if (event.sensor.getType() == Sensor.TYPE_PROXIMITY) {
+            time = System.currentTimeMillis();
             if (event.values[0] >= -SENSOR_SENSITIVITY && event.values[0] <= SENSOR_SENSITIVITY) {
                 //near
-                viewPager.setCurrentItem(viewPager.getCurrentItem() + 1);
+                covered = true;
+                coverTime = System.currentTimeMillis();
+            } else {
+                if (time - coverTime < 1000 && covered) {
+                    viewPager.setCurrentItem(viewPager.getCurrentItem() + 1);
+                    covered = false;
+                }
+                else if (time - coverTime >= 1000 && covered) {
+                    Intent intent = new Intent(StepActivity.this, TimerActivity.class);
+                    startActivity(intent);
+                    covered = false;
+                }
             }
         } else if(event.sensor.getType() == Sensor.TYPE_ACCELEROMETER) {
             accYValue = event.values[1];

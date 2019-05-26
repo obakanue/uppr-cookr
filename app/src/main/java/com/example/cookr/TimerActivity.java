@@ -117,6 +117,9 @@ public class TimerActivity extends AppCompatActivity implements SensorEventListe
             } else if (event.values[0] >= -SENSOR_SENSITIVITY && event.values[0] <= SENSOR_SENSITIVITY && timerOn){
                 timerOn = false;
                 timer.cancel();
+
+
+
             }
         }
     }
@@ -315,7 +318,7 @@ public class TimerActivity extends AppCompatActivity implements SensorEventListe
         if (!timerOn) {
             //textView.setText("cookr");
         } else {
-            hours++;
+           // hours++;
 
         }
     }
