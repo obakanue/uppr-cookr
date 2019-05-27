@@ -11,7 +11,7 @@
         android:id="@+id/cardView2"
         android:layout_width="260dp"
         android:layout_height="73dp"
-        android:layout_marginTop="352dp"
+        android:layout_marginTop="18dp"
         android:background="@color/khakitransp"
         android:clickable="true"
         android:onClick="timerStart"
@@ -21,7 +21,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout6">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -50,6 +50,7 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
 
+        android:id="@+id/constraintLayout6"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="236dp"
@@ -62,11 +63,11 @@
             android:id="@+id/stepHoursText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="3F3333"
-            android:textColor="@color/white"
+            android:background="#3F3333"
             android:onClick="hoursClick"
             android:paddingVertical="20dp"
             android:text="00"
+            android:textColor="@color/white"
             android:textSize="40sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -78,11 +79,11 @@
             android:id="@+id/stepMinutesText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="3F3333"
-            android:textColor="@color/white"
+            android:background="#3F3333"
             android:onClick="minutesClick"
             android:paddingVertical="20dp"
             android:text="10"
+            android:textColor="@color/white"
             android:textSize="40sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -94,11 +95,11 @@
             android:id="@+id/stepSecondsText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="3F3333"
-            android:textColor="@color/white"
+            android:background="#3F3333"
             android:onClick="secondsClick"
             android:paddingVertical="20dp"
             android:text="00"
+            android:textColor="@color/white"
             android:textSize="40sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

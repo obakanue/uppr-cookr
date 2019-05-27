@@ -129,6 +129,10 @@ public class StepActivity extends AppCompatActivity implements SensorEventListen
         viewPager.setCurrentItem(viewPager.getCurrentItem() + 1);
     }
 
+    public void prev(View v){
+        viewPager.setCurrentItem(viewPager.getCurrentItem() - 1);
+    }
+
     private void printMin() {
         minutesText = (TextView) findViewById(R.id.stepMinutesText);
         String formatedTime = String.format("%02d", minutes);
