@@ -10,9 +10,12 @@ import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+
+import org.w3c.dom.Text;
 
 public class StepActivity extends AppCompatActivity implements SensorEventListener {
     private SensorManager mSensorManager;
@@ -23,6 +26,8 @@ public class StepActivity extends AppCompatActivity implements SensorEventListen
     private float accYValue;
     private ViewPager viewPager;
     private long coverTime, time;
+    private int minutes = 10, seconds = 0;
+    private TextView mTextField, minutesText, secondsText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +40,29 @@ public class StepActivity extends AppCompatActivity implements SensorEventListen
 
         viewPager = (ViewPager) findViewById(R.id.viewpager);
         viewPager.setAdapter(new CustomPagerAdapter(this));
+    }
+
+    public void timerStart(View v) {
+        new CountDownTimer(600000, 1000) {
+
+            public void onTick(long millisUntilFinished) {
+
+                if (seconds == 0) {
+                        seconds = 59;
+                        minutes--;
+                } else {
+                    seconds--;
+                }
+
+                printMin();
+                printSec();
+
+            }
+
+            public void onFinish() {
+            }
+
+        }.start();
     }
 
     @Override
@@ -99,5 +127,18 @@ public class StepActivity extends AppCompatActivity implements SensorEventListen
 
     public void next(View v){
         viewPager.setCurrentItem(viewPager.getCurrentItem() + 1);
+    }
+
+    private void printMin() {
+        minutesText = (TextView) findViewById(R.id.stepMinutesText);
+        String formatedTime = String.format("%02d", minutes);
+        minutesText.setText(": " + formatedTime + ":");
+
+    }
+
+    private void printSec() {
+        secondsText = (TextView) findViewById(R.id.stepSecondsText);
+        String formatedTime = String.format("%02d", seconds);
+        secondsText.setText(formatedTime);
     }
 }
