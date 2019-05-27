@@ -91,6 +91,7 @@ public class TimerActivity extends AppCompatActivity implements SensorEventListe
 
         super.onResume();
 
+
     }
 
 
@@ -135,6 +136,7 @@ public class TimerActivity extends AppCompatActivity implements SensorEventListe
             }
         }
     }
+
 
     @Override
     public void onAccuracyChanged(Sensor sensor, int accuracy) {
@@ -233,6 +235,9 @@ public class TimerActivity extends AppCompatActivity implements SensorEventListe
         printLabel(3);
         if (!userTimerActivity) {
             printLabel(1);
+
+            vibrate(300);
+
         } else {
             if (hoursHolder) {
                 hours++;
@@ -250,21 +255,28 @@ public class TimerActivity extends AppCompatActivity implements SensorEventListe
 
     public void down(View v) {
         printLabel(3);
-        if (hoursHolder) {
-            if (hours > 0) {
-                hours--;
-                printH();
-            }
-        } else if (minutesHolder) {
-            if (minutes > 0) {
-                minutes--;
-                printMin();
-            }
 
-        } else if (secondsHolder) {
-            if (seconds > 0) {
-                seconds--;
-                printSec();
+        if (!userTimerActivity) {
+            printLabel(1);
+            vibrate(300);
+        } else {
+            if (hoursHolder) {
+                if (hours > 0) {
+                    hours--;
+                    printH();
+                }
+            } else if (minutesHolder) {
+                if (minutes > 0) {
+                    minutes--;
+                    printMin();
+                }
+
+            } else if (secondsHolder) {
+                if (seconds > 0) {
+                    seconds--;
+                    printSec();
+                }
+
             }
         }
 
@@ -325,15 +337,7 @@ public class TimerActivity extends AppCompatActivity implements SensorEventListe
         printTime();
     }
 
-    public void logoClick(View v) {
-        vibrate(100);
-        if (!timerOn) {
-            //textView.setText("cookr");
-        } else {
-           // hours++;
 
-        }
-    }
 
     private void setColorTimerAll(int parsedColor) {
         hoursTV.setTextColor(parsedColor);
@@ -369,6 +373,8 @@ public class TimerActivity extends AppCompatActivity implements SensorEventListe
 
     private void onTimerStartUI(){
 
+        vibrate(100);
+
         printStartStopButtonText(1);
         printLabel(0);
 
@@ -380,7 +386,9 @@ public class TimerActivity extends AppCompatActivity implements SensorEventListe
             printTime();
             printStartStopButtonText(2);
             setColorTimerAll(parsedLight);
-            vibrate(500);
+
+            vibrate(1000);
+
         }
     }
     public void timerLogic(){
@@ -419,7 +427,9 @@ public class TimerActivity extends AppCompatActivity implements SensorEventListe
         if (timerSet()) {
 
             if (!timerOn) {
-               onTimerStartUI();
+
+                onTimerStartUI(); //här finns vibration
+
 
                 timerOn = true;
                 timerLogic();
@@ -431,6 +441,10 @@ public class TimerActivity extends AppCompatActivity implements SensorEventListe
                 timer.cancel();
 
            }
+
+        } else {
+            vibrate(300);
+
         }
     }
 

@@ -81,6 +81,9 @@ public class MainActivity extends AppCompatActivity
         startActivity(intent);
 
     }
+    public void getHelpPop(View v){
+        startActivity(new Intent(MainActivity.this, Pop.class));
+    }
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {

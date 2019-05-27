@@ -63,6 +63,7 @@
         android:layout_height="300dp"
         android:layout_marginTop="69dp"
         android:contentDescription="@string/cookr_logo"
+        android:onClick="getHelpPop"
         android:elevation="10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
