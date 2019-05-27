@@ -331,15 +331,6 @@ public class TimerActivity extends AppCompatActivity implements SensorEventListe
         printTime();
     }
 
-    public void logoClick(View v) {
-        // vibrate(100);
-        if (!timerOn) {
-            //textView.setText("cookr");
-        } else {
-           // hours++;
-
-        }
-    }
 
     private void setColorTimerAll(int parsedColor) {
         hoursTV.setTextColor(parsedColor);

@@ -81,7 +81,6 @@
         android:layout_marginTop="128dp"
         android:contentDescription="@string/cookr_logo"
         android:elevation="10dp"
-        android:onClick="logoClick"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
