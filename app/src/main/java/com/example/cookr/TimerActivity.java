@@ -362,7 +362,7 @@ public class TimerActivity extends AppCompatActivity implements SensorEventListe
                 startStopButton.setText("STOP");
                 break;
             case 2:
-                startStopButton.setText("FINNISH");
+                startStopButton.setText("FINISH");
                 break;
 
             default:
