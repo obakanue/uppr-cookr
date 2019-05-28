@@ -12,6 +12,7 @@ import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.text.SpannableString;
@@ -388,6 +389,8 @@ public class TimerActivity extends AppCompatActivity implements SensorEventListe
             setColorTimerAll(parsedLight);
 
             vibrate(1000);
+            MediaPlayer ring=  MediaPlayer.create(TimerActivity.this,R.raw.alarm);
+            ring.start();
 
         }
     }

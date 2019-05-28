@@ -9,6 +9,7 @@ import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.view.View;
@@ -28,6 +29,7 @@ public class StepActivity extends AppCompatActivity implements SensorEventListen
     private long coverTime, time;
     private int minutes = 10, seconds = 0;
     private TextView mTextField, minutesText, secondsText;
+    public boolean timerOn = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,26 +45,32 @@ public class StepActivity extends AppCompatActivity implements SensorEventListen
     }
 
     public void timerStart(View v) {
-        new CountDownTimer(600000, 1000) {
+        if (!timerOn) {
+            timerOn = true;
+            new CountDownTimer(600000, 1000) {
 
-            public void onTick(long millisUntilFinished) {
+                public void onTick(long millisUntilFinished) {
 
-                if (seconds == 0) {
+                    if (seconds == 0) {
                         seconds = 59;
                         minutes--;
-                } else {
-                    seconds--;
+                    } else {
+                        seconds--;
+                    }
+
+                    printMin();
+                    printSec();
+
                 }
 
-                printMin();
-                printSec();
+                public void onFinish() {
+                    timerOn = false;
+                    MediaPlayer ring = MediaPlayer.create(StepActivity.this, R.raw.alarm);
+                    ring.start();
+                }
 
-            }
-
-            public void onFinish() {
-            }
-
-        }.start();
+            }.start();
+        }
     }
 
     @Override
