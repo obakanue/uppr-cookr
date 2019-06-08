@@ -1,0 +1,7 @@
+title:Lasagna
+step:Fry minced meat till brown.
+step:Mix with tomato sauce and add spices.
+step:Put meat mixture in a tin and add lasagna plates on top, repeat until all meat is in the tin.
+step:Add some grated cheese on top and heat in oven at 175°C for 40 minutes.
+timer:00.40.00
+step:Serve with a fresh salad.

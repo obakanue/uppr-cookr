@@ -1,0 +1,6 @@
+title:Vegetable soup
+step:Chop up the vegetables.
+step:Make a broth out of vegetables.
+step:Let the vegetables simmer in the broth for 20 minutes.
+timer:00.20.00
+step:Serve with some bread.

@@ -1,0 +1,6 @@
+title:Pancakes
+step:Mix 2 ½ flour with ½ tbsp salt in a bowl.
+step:Whip the flour mix together with half of the milk (6 dl). Then whip together the mix with the rest of the milk and the 3 eggs.
+step:Melt part of the butter in the pan and pour out a thin layer of mix to cover the whole pan. Fry for 30 seconds on each side until finishing all of the mix. (10 min)
+timer:00.12.07
+step:Serve with jam, berries or fruit.

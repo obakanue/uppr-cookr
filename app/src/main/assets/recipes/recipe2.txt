@@ -1,0 +1,5 @@
+title:Swedish meatballs
+step:Mix minced meat with onions and spices.
+step:Shape meat mixture into small balls.
+step:Fry in a frying pan with a good amount of butter until brownish.
+step:Serve with mashed potatoes and fresh lingonberry jam.

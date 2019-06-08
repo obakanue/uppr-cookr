@@ -46,9 +46,47 @@ public class RecipeActivity extends AppCompatActivity implements SensorEventList
         return new OnItemClickListener(){
             public void onItemClick(AdapterView<?> p, View v, int x, long id){
                 String recipe = p.getItemAtPosition(x).toString();
+
+                /*
                 if("PANCAKES".equals(recipe)){
-                    Intent intent = new Intent(RecipeActivity.this, RecipeOverview.class);
+                    // Intent intent = new Intent(RecipeActivity.this, RecipeOverview.class);
+                    Intent intent = new Intent(RecipeActivity.this, GeneralStepActivity.class);
                     startActivity(intent);
+                }
+                */
+
+                Intent intent = new Intent(RecipeActivity.this, GeneralStepActivity.class);
+                Bundle b = new Bundle();
+
+                switch(recipe) {
+                    case "PANCAKES":
+                        b.putInt("recipe", 0);
+                        intent.putExtras(b);
+                        startActivity(intent);
+                        // finish(); ?
+                        break;
+                    case "LASAGNA":
+                        b.putInt("recipe", 1);
+                        intent.putExtras(b);
+                        startActivity(intent);
+                        break;
+                    case "SWEDISH MEATBALLS":
+                        b.putInt("recipe", 2);
+                        intent.putExtras(b);
+                        startActivity(intent);
+                        break;
+                    case "HAMBURGERS":
+                        b.putInt("recipe", 3);
+                        intent.putExtras(b);
+                        startActivity(intent);
+                        break;
+                    case "VEGETABLE SOUP":
+                        b.putInt("recipe", 4);
+                        intent.putExtras(b);
+                        startActivity(intent);
+                        break;
+                    default:
+                        break;
                 }
             }
         };

@@ -130,7 +130,7 @@ public class TimerActivity extends AppCompatActivity implements SensorEventListe
                     }
                     covered = false;
                 } else if (time - coverTime >= 1000 && covered) {
-                    Intent intent = new Intent(TimerActivity.this, StepActivity.class);
+                    Intent intent = new Intent(TimerActivity.this, GeneralStepActivity.class);
                     startActivity(intent);
                     covered = false;
                 }

@@ -1,0 +1,5 @@
+title:Hamburgers
+step:Make patties out of minced meat and spices.
+step:Fry patties until both sides are finished. (5 mins)
+timer:00.05.00
+step:Serve with a fresh pair of buns, some lettuce and hamburger dressing.

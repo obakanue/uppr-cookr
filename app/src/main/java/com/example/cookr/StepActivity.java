@@ -96,6 +96,7 @@ public class StepActivity extends AppCompatActivity implements SensorEventListen
                 coverTime = System.currentTimeMillis();
             } else {
                 if (time - coverTime < 1000 && covered) {
+                    // jump forward in recipe
                     viewPager.setCurrentItem(viewPager.getCurrentItem() + 1);
                     covered = false;
                 }

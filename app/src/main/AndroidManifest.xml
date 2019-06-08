@@ -11,9 +11,12 @@
         android:roundIcon="@drawable/logo_no_text"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
-        <activity android:name=".Pop" android:theme="@style/AppTheme.CustomTheme"></activity>
-
-
+        <activity
+            android:name=".GeneralStepActivity"
+            android:screenOrientation="portrait"></activity>
+        <activity
+            android:name=".Pop"
+            android:theme="@style/AppTheme.CustomTheme" />
         <activity
             android:name=".StepActivity"
             android:screenOrientation="portrait" />
